@@ -114,6 +114,7 @@ class Builder:
                "-DWITH_LAPACK=OFF",
                "-DWITH_ITT=OFF",
                "-DWITH_QUIRC=OFF",
+               "-DWITH_INF_ENGINE=ON",
                "-DBUILD_ZLIB=ON",
                "-DBUILD_opencv_apps=OFF",
                "-DBUILD_opencv_calib3d=ON",
@@ -184,6 +185,7 @@ class Builder:
             flags += "-msimd128 "
         if self.options.build_flags:
             flags += self.options.build_flags
+        flags += "--preload-file /home/sasha/workspace/projects/opencv/build_wasm/modules/js/libMKLDNNPlugin.so "
         return flags
 
     def config(self):

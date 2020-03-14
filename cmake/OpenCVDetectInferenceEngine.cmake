@@ -55,6 +55,9 @@ endfunction()
 
 # ======================
 
+set(InferenceEngine_DIR "/opt/intel/openvino_2020.1.023/deployment_tools/inference_engine/share")
+message(STATUS "InferenceEngine_DIR: " ${InferenceEngine_DIR})
+
 find_package(InferenceEngine QUIET)
 if(InferenceEngine_FOUND)
   set(INF_ENGINE_TARGET ${InferenceEngine_LIBRARIES})
