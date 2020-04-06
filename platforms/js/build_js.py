@@ -185,7 +185,21 @@ class Builder:
             flags += "-msimd128 "
         if self.options.build_flags:
             flags += self.options.build_flags
-        flags += "--preload-file /home/sasha/workspace/projects/opencv/build_wasm/modules/js/libMKLDNNPlugin.so "
+
+        flags += "-s MAIN_MODULE=2 -O0 -s ASSERTIONS=1 "
+
+        flags += "-s EXPORTED_FUNCTIONS=\"['_sched_getaffinity', '__ZTINSt3__212future_errorE', '__ZNK6mkldnn4impl3cpu17_ref_rnn_common_tIL18mkldnn_prop_kind_t64EL18mkldnn_data_type_t1ELS4_1EE13bias_finalizeERKNS1_9rnn_utils10rnn_conf_tEPfPKfSC_', '__ZN6mkldnn4impl3cpu14engine_factoryE', '__ZTV21mkldnn_primitive_desc', '__ZTVN15InferenceEngine7details23LowPrecisionTransformerE', '__ZN15InferenceEngine15ExecutorManager9_instanceE', '__ZTVN15InferenceEngine7details24EltwiseCpuTransformationE', '__ZTVN15InferenceEngine7details25ConvolutionTransformationE', '__ZTVN15InferenceEngine9Parameter8RealDataINSt3__26vectorINS2_12basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEENS7_IS9_EEEEEE', '__ZTVN15InferenceEngine7details37ScaleShiftToConvolutionTransformationE', '__ZTIN15InferenceEngine12CompoundBlobE', '__ZTVN15InferenceEngine9Parameter8RealDataINSt3__25tupleIJjjEEEEE', '__ZTVN15InferenceEngine9Parameter8RealDataINSt3__25tupleIJjjjEEEEE', '__ZTVN15InferenceEngine23InferencePluginInternalE']\" "
+
+        #flags += "--preload-file /home/sasha/workspace/projects/opencv/build_wasm/modules/js/libMKLDNNPlugin.so "
+        flags += "--preload-file /home/sasha/workspace/projects/opencv/build_wasm/modules/js/plugins.xml "
+        flags += "--preload-file /home/sasha/workspace/projects/opencv/build_wasm/modules/js/cpuinfo "
+        #flags += "--pre-js /home/sasha/workspace/projects/opencv/build_wasm/modules/js/pre.js "
+
+        #flags +="-s ASSERTIONS=1 -s DISABLE_EXCEPTION_CATCHING=0 "
+        #flags += "-s RESERVED_FUNCTION_POINTERS=100 "
+        #flags += "-O3 -g3 "
+        #flags += "-s NO_EXIT_RUNTIME=1 "
+        #flags += "-s EXPORT_ALL=1 "
         return flags
 
     def config(self):
